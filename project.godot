@@ -1,0 +1,33 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="clipboarder"
+run/main_scene="res://main_window.tscn"
+config/features=PackedStringArray("4.1", "GL Compatibility")
+boot_splash/show_image=false
+boot_splash/fullsize=false
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=380
+window/size/viewport_height=200
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

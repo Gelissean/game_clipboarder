@@ -1,0 +1,121 @@
+[gd_scene load_steps=2 format=3 uid="uid://btakpaisyok8r"]
+
+[ext_resource type="Script" path="res://main_window.gd" id="1_5ohfe"]
+
+[node name="MainWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 380.0
+offset_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_5ohfe")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Name" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_direction = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Name"]
+layout_mode = 2
+text = "Game Name:"
+
+[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Name of the game"
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Tags" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Wishlisted" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Tags"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Tags/Wishlisted"]
+layout_mode = 2
+text = "Wishlisted"
+
+[node name="CheckBox" type="CheckBox" parent="Panel/MarginContainer/VBoxContainer/Tags/Wishlisted"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VSeparator" type="VSeparator" parent="Panel/MarginContainer/VBoxContainer/Tags"]
+layout_mode = 2
+
+[node name="DemoAvailable" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Tags"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Tags/DemoAvailable"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Demo Available"
+
+[node name="CheckBox" type="CheckBox" parent="Panel/MarginContainer/VBoxContainer/Tags/DemoAvailable"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VSeparator2" type="VSeparator" parent="Panel/MarginContainer/VBoxContainer/Tags"]
+layout_mode = 2
+
+[node name="Interesting" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Tags"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Tags/Interesting"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Interesting"
+
+[node name="CheckBox" type="CheckBox" parent="Panel/MarginContainer/VBoxContainer/Tags/Interesting"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HSeparator3" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Link" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Link"]
+layout_mode = 2
+text = "Link:"
+
+[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Link"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Link to game"
+
+[node name="HSeparator4" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CopyToClipboard" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Copy to clipboard 💾"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/CopyToClipboard" to="." method="_on_copy_to_clipboard_pressed"]
