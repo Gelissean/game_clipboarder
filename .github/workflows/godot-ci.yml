@@ -27,9 +27,7 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
-          ls -l
-          cat export_presets.cfg
-          godot --headless --verbose --export-release "WindowsDesktop" ../build/windows/$EXPORT_NAME.exe
+          godot --headless --verbose --export-release "Windows Desktop" /build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
