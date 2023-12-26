@@ -38,24 +38,30 @@ jobs:
         with:
           name: windows
           path: /build/windows/
-      - name: GitHub Tag
-        # You may pin to the exact commit or the version.
-        # uses: mathieudutour/github-tag-action@fcfbdceb3093f6d85a3b194740f8c6cec632f4e2
-        uses: mathieudutour/github-tag-action@v6.1
-        with:
-          # Required for permission to tag the repo.
-          github_token: ${{ secrets.RELEASE_TOKEN }}
-          # Custom tag name. If specified, it overrides bump settings.
-          custom_tag: latest
-      - name: Upload to Release Action
-        # You may pin to the exact commit or the version.
-        # uses: Shopify/upload-to-release@c77c9b3e5d288adaef98a7007bf92340ec6ce03b
-        uses: Shopify/upload-to-release@v2.0.0
-        with:
-          # Artifact name
-          name: windows
-          # Path to the file to upload
-          path: /build/windows
-          # secrets.GITHUB_TOKEN
-          repo-token: ${{ secrets.RELEASE_TOKEN }}
+      - name: Update latest tag and release files
+        run: |
+          cd /build/windows
+          tar --create * -f file.zip --auto-compress
+          git push --delete origin tagname || true
+          git tag latest main && git push origin latest
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /repos/OWNER/REPO/releases \
+            -f tag_name='latest' \
+           -f target_commitish='master' \
+           -f name='latest' \
+           -f body='latest build' \
+           -F draft=false \
+           -F prerelease=false \
+           -F generate_release_notes=false > result
+          cat result | grep id
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            --hostname github.com \
+            /repos/OWNER/REPO/game_clipboarder/1/assets?name=windows.zip \
+            -f '@windows.zip'
 
